@@ -11,12 +11,18 @@ from .serializers import CurrencySerializer
 class CurrencyListView(APIView):
 
     def get(self, req):
-        currencies = Currency.objects.all()
-        serializer = CurrencySerializer(currencies, many=True, context={'request':req})
-        return Response(serializer.data)
+        id = req.query_params.get('id')
+        if id:
+            currencies = get_object_or_404(Currency, id=id)
+            serializer = CurrencySerializer(currencies, context={'request':req})
+            return Response(serializer.data)
+        else:
+            currencies = Currency.objects.all()
+            serializer = CurrencySerializer(currencies, many=True, context={'request':req})
+            return Response(serializer.data)
     
     def post(self, req):
-        serializer = CurrencySerializer(data=req.data, context={'request':req}, many=True)
+        serializer = CurrencySerializer(data=req.data, context={'request':req})
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
