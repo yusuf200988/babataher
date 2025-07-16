@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>صرافی من</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex flex-col">
+
+  <h1 class="text-center text-2xl font-bold my-6">صرافی من</h1>
+
+  <div id="coin-list" class="flex flex-wrap gap-4 justify-center px-4 sm:px-8 text-center"></div>
+
+  <div id="converter" class="hidden bg-gray-800 text-white p-6 rounded-xl shadow-lg max-w-md mx-auto mt-8">
+    <h2 class="text-xl font-bold mb-4 text-center">تبدیل ارز</h2>
+    <div class="flex flex-col gap-4">
+      <input id="amount" type="number" placeholder="مقدار" class="bg-gray-700 p-2 rounded" />
+
+      <select id="from" class="bg-gray-700 p-2 rounded"></select>
+      <select id="to" class="bg-gray-700 p-2 rounded"></select>
+
+      <button id="convertBtn" class="bg-blue-600 hover:bg-blue-700 transition-all py-2 rounded mt-2">
+        تبدیل
+      </button>
+
+      <div id="result" class="text-center text-lg font-semibold mt-4"></div>
+    </div>
+  </div>
+
+  <nav class="fixed bottom-0 left-0 w-full bg-gray-800 text-white flex justify-around py-3 border-t border-gray-700">
+    <div class="flex flex-col items-center text-sm cursor-pointer" onclick="showSection('coin-list')">
+      <img src="icons/currency.png" class="w-6 h-6" />
+      ارزها
+    </div>
+    <div class="flex flex-col items-center text-sm cursor-pointer" onclick="showSection('converter')">
+      <img src="icons/swap.png" class="w-6 h-6" />
+      تبدیل
+    </div>
+  </nav>
+
+  <script src="script.js"></script>
+</body>
+</html>
